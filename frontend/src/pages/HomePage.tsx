@@ -1,12 +1,13 @@
-import { UserComponent } from "../components";
-import Header from "../components/Header/Header";
+import { SideBar, Header, Restaurant } from "../components";
+
 import React, { useState } from "react";
 
 const HomePage: React.FC = () => {
   return (
     <div>
       <Header />
-      <UserComponent />
+      <SideBar />
+      <Restaurant />
     </div>
   );
 };

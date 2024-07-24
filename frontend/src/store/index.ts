@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import authReducer from './slices/authSlice'
+import authReducer from './slices/authSlice';
 import { userApi } from './apis/userApi';
+import { restaurantApi } from './apis/restaurantApi';
 
 
 export const store = configureStore({
@@ -10,6 +11,7 @@ export const store = configureStore({
         auth: authReducer,
         // Add the generated reducer as a specific top-level slice
         [userApi.reducerPath]: userApi.reducer,
+        [restaurantApi.reducerPath]: restaurantApi.reducer
     },
     // Adding the api middleware enables caching, invalidation, polling,
     // and other useful features of `rtk-query`.
@@ -24,4 +26,5 @@ setupListeners(store.dispatch);
 export type RootState = ReturnType<typeof store.getState>; //type of the store to import for type safety
 export type AppDispatch = typeof store.dispatch; //type of the dispatch function
 export { useGetUserQuery, useLoginUserMutation, useSignupUserMutation, useUpdateUserMutation, useRemoveUserMutation } from './apis/userApi';
+export  { useCreateRestaurantMutation, useGetRestaurantByCuisineQuery } from './apis/restaurantApi';
 
