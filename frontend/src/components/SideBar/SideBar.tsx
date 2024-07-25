@@ -32,15 +32,18 @@ const UserComponent: React.FC = () => {
   }, [ref]);
 
   return (
-    <div className={styles.sidebar} ref={ref}>
-      <div className={`${styles.top} ${isOpen ? styles.butopen : ""}`}>
+    <div className={styles.sidebar}>
+      <div className={styles.top}>
         {isOpen ? (
           <BsLayoutSidebarInsetReverse onClick={() => setIsOpen(false)} />
         ) : (
           <BsLayoutSidebarInset onClick={() => setIsOpen(true)} />
         )}
       </div>
-      <div className={`${styles.mainContainer} ${isOpen ? styles.open : ""}`}>
+      <div
+        className={`${styles.mainContainer} ${isOpen ? styles.open : ""}`}
+        ref={ref}
+      >
         <div className={styles.user}>
           <div className={styles.leftSide}>
             {user ? <PiUserFocus className="text-5xl" /> : <></>}

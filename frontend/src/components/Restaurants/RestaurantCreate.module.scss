@@ -1,0 +1,132 @@
+body {
+    background-color: black;
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: fixed;
+    height: 100vh;
+    left: 45%;
+    width: 500px;
+    z-index: 1;
+    background-color: white;
+    border: 2px solid black;
+    padding: 130px 5px;
+
+    .formGroup {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 90%;
+        margin: 10px 0;
+
+        .title {
+            display: flex;
+            position: relative;
+            margin: 10px 0px 20px 4px;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .link {
+            display: flex;
+            position: relative;
+            margin: 10px 0px 20px 4px;
+            font-weight: 600;
+            font-size: 18px;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        .text {
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #333;
+            padding: 0px 4px;
+            font-weight: 550;
+        }
+
+        .input {
+            padding: 10px 12px;
+            background-color: #E6E6FA;
+            width: 100%;
+            height: 40px;
+            border-radius: 0.3em;
+
+            &:focus {
+                background-color: white; // Change background color when focused
+                border: 1px solid #ccc;
+            }
+        }
+
+        .time {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+
+            .labinp {
+                display: flex;
+                flex-direction: column;
+                width: 48%; // Adjust this value if necessary to fit your design
+
+                .text {
+                    margin-bottom: 5px;
+                    font-size: 14px;
+                    color: #333;
+                    padding: 0px 4px;
+                    font-weight: 550;
+                }
+
+                .timeInput {
+                    padding: 10px 12px;
+                    background-color: #E6E6FA;
+                    width: 100%;
+                    height: 40px;
+                    border-radius: 0.3em;
+                    border: 1px solid #ccc;
+                    transition: background-color 0.3s ease; // Smooth transition for background color
+
+                    &:focus {
+                        background-color: white; // Change background color when focused
+                        border: 1px solid #ccc;
+                    }
+                }
+            }
+        }
+
+        .select {
+            width: 100%;
+            margin-top: 5px;
+
+            &__control {
+                background-color: #E6E6FA;
+                border-radius: 0.3em;
+                border: 1px solid #ccc;
+            }
+        }
+    }
+
+    .fileInput {
+        margin: 10px 0;
+    }
+
+    .button {
+        display: flex;
+        margin: 30px 30px;
+        width: 90%;
+        position: relative;
+        bottom: -10em;
+
+
+
+        &:disabled {
+            background-color: #ddd;
+        }
+    }
+}

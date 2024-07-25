@@ -8,7 +8,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import Button from "../../shared/Button";
 import { setUser } from "../../store/slices/authSlice";
-import "./LoginComponent.css";
+import log from "./LoginComponent.module.scss";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const LoginComponent: React.FC = () => {
@@ -51,8 +51,8 @@ const LoginComponent: React.FC = () => {
     const container = containerRef.current;
 
     if (registerBtn && loginBtn && container) {
-      const addClass = () => container.classList.add("active");
-      const removeClass = () => container.classList.remove("active");
+      const addClass = () => container.classList.add(log.active);
+      const removeClass = () => container.classList.remove(log.active);
 
       registerBtn.addEventListener("click", addClass);
       loginBtn.addEventListener("click", removeClass);
@@ -102,105 +102,110 @@ const LoginComponent: React.FC = () => {
   };
 
   return (
-    <div className="main-container">
-      <div className="container" id="container" ref={containerRef}>
-        <div className="form-container sign-up">
-          <form className="form" onSubmit={handleSignup}>
-            <h1>Create Account</h1>
-            <div className="social-icons">
-              <a href="#" className="icon">
-                <i className="fa-brands fa-google-plus-g"></i>
-              </a>
-              <a href="#" className="icon">
-                <i className="fa-brands fa-facebook-f"></i>
-              </a>
-              <a href="#" className="icon">
-                <i className="fa-brands fa-github"></i>
-              </a>
-              <a href="#" className="icon">
-                <i className="fa-brands fa-linkedin-in"></i>
-              </a>
-            </div>
-            <span>or use your email for registration</span>
-            <input
-              type="text"
-              value={name}
-              onChange={handleNameChange}
-              placeholder="Name"
-              required
-            />
-            <input
-              type="email"
-              value={email}
-              onChange={handleEmailChange}
-              placeholder="Email"
-              required
-            />
-            <input
-              type="password"
-              value={password}
-              onChange={handlePasswordChange}
-              placeholder="Password"
-              required
-            />
-            <Button type="submit">Sign Up</Button>
-            {isSignupSuccess && <p>User Created Successfully. Please log in</p>}
-            {isSignupError && <p>User Failed to Create. Please try again</p>}
-          </form>
-        </div>
-        <div className="form-container sign-in">
-          <form className="form" onSubmit={handleLogin}>
-            <h1>Sign In</h1>
-            <div className="social-icons">
-              <a href="#" className="icon">
-                <i className="fa-brands fa-google-plus-g"></i>
-              </a>
-              <a href="#" className="icon">
-                <i className="fa-brands fa-facebook-f"></i>
-              </a>
-              <a href="#" className="icon">
-                <i className="fa-brands fa-github"></i>
-              </a>
-              <a href="#" className="icon">
-                <i className="fa-brands fa-linkedin-in"></i>
-              </a>
-            </div>
-            <span>or use your email password</span>
-            <input
-              type="email"
-              value={email}
-              onChange={handleEmailChange}
-              placeholder="Email"
-              required
-            />
-            <input
-              type="password"
-              value={password}
-              onChange={handlePasswordChange}
-              placeholder="Password"
-              required
-            />
-            <a href="#">Forget Your Password?</a>
-            <Button type="submit">Sign In</Button>
-          </form>
-        </div>
-        <div className="toggle-container">
-          <div className="toggle">
-            <div className="toggle-panel toggle-left">
-              <h1>Welcome Back!</h1>
-              <p>Enter your personal details to use all of site features</p>
-              <button id="login" ref={loginBtnRef}>
-                Sign In
-              </button>
-            </div>
-            <div className="toggle-panel toggle-right">
-              <h1>Hello, Friend!</h1>
-              <p>
-                Register with your personal details to use all of site features
-              </p>
-              <button id="register" ref={registerBtnRef}>
-                Sign Up
-              </button>
+    <div className={log.global}>
+      <div className={log.mainContainer}>
+        <div className={log.container} id="container" ref={containerRef}>
+          <div className={log.formContainer + " " + log.signUp}>
+            <form className={log.form} onSubmit={handleSignup}>
+              <h1>Create Account</h1>
+              <div className={log.socialIcons}>
+                <a href="#" className={log.icon}>
+                  <i className="fa-brands fa-google-plus-g"></i>
+                </a>
+                <a href="#" className={log.icon}>
+                  <i className="fa-brands fa-facebook-f"></i>
+                </a>
+                <a href="#" className={log.icon}>
+                  <i className="fa-brands fa-github"></i>
+                </a>
+                <a href="#" className={log.icon}>
+                  <i className="fa-brands fa-linkedin-in"></i>
+                </a>
+              </div>
+              <span>or use your email for registration</span>
+              <input
+                type="text"
+                value={name}
+                onChange={handleNameChange}
+                placeholder="Name"
+                required
+              />
+              <input
+                type="email"
+                value={email}
+                onChange={handleEmailChange}
+                placeholder="Email"
+                required
+              />
+              <input
+                type="password"
+                value={password}
+                onChange={handlePasswordChange}
+                placeholder="Password"
+                required
+              />
+              <Button type="submit">Sign Up</Button>
+              {isSignupSuccess && (
+                <p>User Created Successfully. Please log in</p>
+              )}
+              {isSignupError && <p>User Failed to Create. Please try again</p>}
+            </form>
+          </div>
+          <div className={log.formContainer + " " + log.signIn}>
+            <form className={log.form} onSubmit={handleLogin}>
+              <h1>Sign In</h1>
+              <div className={log.socialIcons}>
+                <a href="#" className={log.icon}>
+                  <i className="fa-brands fa-google-plus-g"></i>
+                </a>
+                <a href="#" className={log.icon}>
+                  <i className="fa-brands fa-facebook-f"></i>
+                </a>
+                <a href="#" className={log.icon}>
+                  <i className="fa-brands fa-github"></i>
+                </a>
+                <a href="#" className={log.icon}>
+                  <i className="fa-brands fa-linkedin-in"></i>
+                </a>
+              </div>
+              <span>or use your email password</span>
+              <input
+                type="email"
+                value={email}
+                onChange={handleEmailChange}
+                placeholder="Email"
+                required
+              />
+              <input
+                type="password"
+                value={password}
+                onChange={handlePasswordChange}
+                placeholder="Password"
+                required
+              />
+              <a href="#">Forget Your Password?</a>
+              <Button type="submit">Sign In</Button>
+            </form>
+          </div>
+          <div className={log.toggleContainer}>
+            <div className={log.toggle}>
+              <div className={log.togglePanel + " " + log.toggleLeft}>
+                <h1>Welcome Back!</h1>
+                <p>Enter your personal details to use all of site features</p>
+                <button id="login" ref={loginBtnRef}>
+                  Sign In
+                </button>
+              </div>
+              <div className={log.togglePanel + " " + log.toggleRight}>
+                <h1>Hello, Friend!</h1>
+                <p>
+                  Register with your personal details to use all of site
+                  features
+                </p>
+                <button id="register" ref={registerBtnRef}>
+                  Sign Up
+                </button>
+              </div>
             </div>
           </div>
         </div>

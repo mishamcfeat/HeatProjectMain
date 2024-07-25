@@ -1,4 +1,4 @@
-import { SideBar, Header, Restaurant } from "../components";
+import { SideBar, Header, RestaurantCreate } from "../components";
 
 import React, { useState } from "react";
 
@@ -7,7 +7,7 @@ const HomePage: React.FC = () => {
     <div>
       <Header />
       <SideBar />
-      <Restaurant />
+      <RestaurantCreate />
     </div>
   );
 };
