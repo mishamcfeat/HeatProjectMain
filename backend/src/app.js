@@ -6,30 +6,29 @@ require("express-async-errors");
 
 // Import routes for backend
 const userRoutes = require("./routes/userRoutes");
-// const orderRoutes = require('./routes/orderRoutes');
 const restaurantRoutes = require("./routes/restaurantRoutes");
+const itemRoutes = require("./routes/itemRoutes");
 
 const app = express();
 
 const corsOptions = {
-  origin: "http://localhost:5173", // Replace with your frontend origin
-  credentials: true, // Allow cookies to be sent
+  origin: "http://localhost:5173",
+  credentials: true,
 };
 
-// middleware usage
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors(corsOptions));
 
 // Routes for backend
 app.use("/users", userRoutes);
-// app.use('/orders', orderRoutes);
 app.use("/restaurants", restaurantRoutes);
+app.use("/items", itemRoutes);
 
-// removed the need to set up try catch blocks as express async errors takes care of this
+// Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).send("Something broke!");
+  res.status(500).json({ message: "Something broke!", error: err.message });
 });
 
 module.exports = app;

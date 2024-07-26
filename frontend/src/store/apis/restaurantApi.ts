@@ -2,29 +2,30 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { RootState } from '../index';
 
 interface RestaurantResponse {
-    id: string;
+    _id: string; // Mongoose uses _id for the primary key
     name: string;
     owner: string;
+    items: string[]; // Array of object IDs
     hours: {
         opening: string;
         closing: string;
     };
     location: string;
     cuisineType: string[];
-    imageURL: string;
+    imageUrl: string;
 }
 
 const restaurantApi = createApi({
     reducerPath: 'restaurants',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:5000',
+        baseUrl: 'http://localhost:5000/restaurants',
         credentials: 'include',
     }),
     tagTypes: ['Restaurant'],
     endpoints: (builder) => ({
         createRestaurant: builder.mutation<RestaurantResponse, FormData>({
             query: (formData) => ({
-                url: '/restaurants',
+                url: '/create',
                 method: 'POST',
                 body: formData,
             }),
@@ -32,11 +33,11 @@ const restaurantApi = createApi({
         }),
         getRestaurantByCuisine: builder.query<RestaurantResponse[], string>({
             query: (cuisineType) => ({
-                url: `restaurants?cuisineType=${cuisineType}`,
+                url: `?cuisineType=${cuisineType}`,
                 method: 'GET',
             }),
             providesTags: (result, err, cuisineType) =>
-                result ? result.map(({ id }) => ({ type: 'Restaurant', id })) : [],
+                result ? result.map(({ _id }) => ({ type: 'Restaurant', id: _id })) : [],
         }),
     }),
 });

@@ -39,17 +39,17 @@ const RestaurantCreate: React.FC = () => {
 
     const form = new FormData();
     form.append("name", name);
+    form.append("location", location);
     form.append("opening", opening);
     form.append("closing", closing);
-    form.append("location", location);
     cuisineType.forEach((cuisine) => form.append("cuisineType", cuisine));
-    form.append("imageUrl", image);
+    form.append("imageUrl", image); // Field name should match the backend configuration
 
     try {
       await createRestaurant(form).unwrap();
       console.log("Restaurant Created Successfully!!");
     } catch (err) {
-      console.log("failed to create restaurant", err);
+      console.log("Failed to create restaurant", err);
     }
   };
 
